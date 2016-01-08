@@ -8,6 +8,9 @@ import android.view.Window;
 
 import com.ainosoft.rivuletdemo.client.login.LoginActivity;
 
+/*
+Landing page
+ */
 public class LandingActivity extends AppCompatActivity {
 
     @Override
