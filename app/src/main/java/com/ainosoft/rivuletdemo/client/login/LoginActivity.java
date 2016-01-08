@@ -34,6 +34,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.ainosoft.rivuletdemo.R;
+import com.ainosoft.rivuletdemo.client.appbase.AppBaseManager;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
