@@ -34,7 +34,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.ainosoft.rivuletdemo.R;
-import com.ainosoft.rivuletdemo.client.appbase.AppBaseManager;
+import com.ainosoft.rivuletdemo.client.appbase.BaseManager;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -91,6 +91,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             @Override
             public void onClick(View view) {
                 attemptLogin();
+                startAppHome(view);
             }
         });
 
@@ -352,8 +353,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     public void startAppHome(View view){
-       /* Intent intent = new Intent(this, AppBaseManager.class);
-        startActivity(intent);*/
+        Intent intent = new Intent(this, BaseManager.class);
+        startActivity(intent);
     }
 }
 
