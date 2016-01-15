@@ -23,6 +23,40 @@
             app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/PopupOverlay">
 
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@drawable/hamburger"
+                android:layout_marginTop="20dp"/>
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/rivulet_icon"
+                android:layout_marginLeft="110dp"
+                android:layout_marginTop="20dp"/>
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/project"
+                android:layout_marginLeft="80dp"
+                android:layout_marginTop="20dp"/>
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/countdown"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"/>
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/settings"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"/>
+
         </android.support.v7.widget.Toolbar>
 
         <android.support.design.widget.TabLayout

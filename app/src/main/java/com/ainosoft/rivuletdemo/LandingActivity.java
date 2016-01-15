@@ -14,7 +14,7 @@ import com.j256.ormlite.dao.Dao;
 import java.sql.SQLException;
 
 /*
-Landing page
+ *  Landing page
  */
 public class LandingActivity extends AppCompatActivity {
 
