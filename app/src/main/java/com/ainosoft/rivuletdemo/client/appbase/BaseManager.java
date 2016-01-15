@@ -1,23 +1,27 @@
 package com.ainosoft.rivuletdemo.client.appbase;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 
-import android.widget.TextView;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import com.ainosoft.rivuletdemo.R;
 
@@ -35,6 +39,7 @@ public class BaseManager extends AppCompatActivity {
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
+    private CollapsingToolbarLayout collapsingToolbarLayout = null;
 
     /**
      * The {@link ViewPager} that will host the section contents.
@@ -43,118 +48,157 @@ public class BaseManager extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_base_manager);
+       try {
+           super.onCreate(savedInstanceState);
+           setContentView(R.layout.activity_base_manager);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections of the activity.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+           // Create the adapter that will return a fragment for each of the three
+           // primary sections of the activity.
+           mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
-        // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
+           // Set up the ViewPager with the sections adapter.
+           mViewPager = (ViewPager) findViewById(R.id.container);
+           mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(mViewPager);
 
+           final TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+           tabLayout.setupWithViewPager(mViewPager);
+           tabLayout.setSelectedTabIndicatorColor(Color.parseColor("#44cceb"));
+           tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+
+               @Override
+               public void onTabSelected(TabLayout.Tab tab) {
+                   tabLayout.setTabTextColors(Color.parseColor("#ffffff"), Color.parseColor("#44cceb"));
+               }
+
+               @Override
+               public void onTabUnselected(TabLayout.Tab tab) {
+               }
+
+               @Override
+               public void onTabReselected(TabLayout.Tab tab) {
+               }
+           });
+
+
+           /******************************For Scroll Handling of LogScreen**********************************************************/
+
+           Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarForScroll);
+           setSupportActionBar(toolbar);
+           ActionBar actionBar = getSupportActionBar();
+           actionBar.setDisplayHomeAsUpEnabled(true);
+
+
+           collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+           collapsingToolbarLayout.setTitle(getResources().getString(R.string.project_name));
+
+           dynamicToolbarColor();
+           toolbarTextAppernce();
+       }catch (Exception e){
+           Log.d("BaseManager","onCreate(): "+e);
+       }
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_base_manager, menu);
+        try {
+            // Inflate the menu; this adds items to the action bar if it is present.
+            getMenuInflater().inflate(R.menu.menu_base_manager, menu);
+        }catch (Exception e){
+            Log.d("BaseManager","onCreateOptionsMenu(): "+e);
+        }
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        try {
+            // Handle action bar item clicks here. The action bar will
+            // automatically handle clicks on the Home/Up button, so long
+            // as you specify a parent activity in AndroidManifest.xml.
+            int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+            //noinspection SimplifiableIfStatement
+            if (id == R.id.action_settings) {
+                return true;
+            }
+        }catch (Exception e){
+            Log.d("BaseManager","onOptionsItemSelected(): "+e);
         }
-
         return super.onOptionsItemSelected(item);
     }
 
     /**
-     * A placeholder fragment containing a simple view.
+     * This method is use to create dialog box on click of title of log screen
+     * @param view
      */
-    public static class PlaceholderFragment extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
-        private static final String ARG_SECTION_NUMBER = "section_number";
+    public void openAlert(View view) {
+    try {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(BaseManager.this);
+        alertDialogBuilder.setTitle("Edit Title");
 
-        public PlaceholderFragment() {
-        }
+        // set positive button: Yes message
+        alertDialogBuilder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // go to a new activity of the app
+                /*Intent positveActivity = new Intent(getContext(), PositiveActivity.class);
+                startActivity(positveActivity);*/
+            }
+        });
 
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
+        // set neutral button: Exit the app message
+        alertDialogBuilder.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // exit the app and go to the HOME
+                //AlertDialogActivity.this.finish();
+            }
+        });
 
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_base_manager, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
-            return rootView;
-        }
+        final EditText input = new EditText(BaseManager.this);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT);
+        input.setLayoutParams(lp);
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.setView(input);
+        alertDialog.show();
+    }catch (Exception e){
+        Log.d("BaseManager","openAlert(): "+e);
+    }
+  }
+
+    /**
+     * This method is use to set color to the title bar on scroll in log screen
+     * the title bar will get color of the behind widget.
+     */
+    private void dynamicToolbarColor() {
+    try {
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.rivulet_icon);
+        Palette.from(bitmap).generate(new Palette.PaletteAsyncListener() {
+
+            @Override
+            public void onGenerated(Palette palette) {
+                collapsingToolbarLayout.setContentScrimColor(palette.getMutedColor(R.attr.colorPrimary));
+                collapsingToolbarLayout.setStatusBarScrimColor(palette.getMutedColor(R.attr.colorPrimaryDark));
+            }
+        });
+    }catch (Exception e){
+        Log.d("BaseManager","dynamicToolbarColor(): "+e);
+    }
     }
 
     /**
-     * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
-     * one of the sections/tabs/pages.
+     * this method is use to set title to the scroll widget of log screen
      */
-    public class SectionsPagerAdapter extends FragmentPagerAdapter {
-
-        public SectionsPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            // getItem is called to instantiate the fragment for the given page.
-            // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
-        }
-
-        @Override
-        public int getCount() {
-            // Show 3 total pages.
-            return 4;
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            switch (position) {
-                case 0:
-                    return "Home";
-                case 1:
-                    return "Insight";
-                case 2:
-                    return "Project";
-                case 3:
-                    return "Logs";
-            }
-            return null;
+    private void toolbarTextAppernce() {
+        try {
+            collapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.collapsedappbar);
+            collapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.expandedappbar);
+        }catch (Exception e){
+            Log.d("BaseManager","toolbarTextAppernce(): "+e);
         }
     }
+
 }
