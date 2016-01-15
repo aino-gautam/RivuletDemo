@@ -3,9 +3,10 @@ package com.ainosoft.rivuletdemo.client.projectscreen;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -14,21 +15,24 @@ import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-
 import com.ainosoft.rivuletdemo.R;
-import com.ainosoft.rivuletdemo.client.appbase.BaseManager;
-
+import android.support.v4.app.Fragment;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProjectScreen extends AppCompatActivity {
+/**
+ * author swapnil@ainosoft.com
+ */
+public class ProjectScreen extends Fragment {
+
+    private static final String ARG_SECTION_NUMBER = "section_number";
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_project_screen);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.activity_project_screen, container, false);
 
-        Spinner spinner=(Spinner)findViewById(R.id.projectscreenspinner);
+        Spinner spinner=(Spinner)rootView.findViewById(R.id.projectscreenspinner);
 
         List<String> list=new ArrayList<>();
         list.add("By name");
@@ -36,24 +40,23 @@ public class ProjectScreen extends AppCompatActivity {
         list.add("By date");
         list.add("By short name");
 
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, list);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(dataAdapter);
 
-        TableLayout parentLayout=(TableLayout)findViewById(R.id.projectnamerelativeLayout);
+        TableLayout parentLayout=(TableLayout)rootView.findViewById(R.id.projectnamerelativeLayout);
 
         int i;
-        for(i=1;i<=5;i++) {
+        for(i=1;i<=10;i++) {
 
             TableRow.LayoutParams relativeParams = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT);
 
 
-            TableRow tableRow=new TableRow(this);
-            TableLayout.LayoutParams tableRowParams= new TableLayout.LayoutParams
-                    (TableLayout.LayoutParams.WRAP_CONTENT,TableLayout.LayoutParams.WRAP_CONTENT);
+            TableRow tableRow=new TableRow(getActivity());
+            TableLayout.LayoutParams tableRowParams= new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT,TableLayout.LayoutParams.WRAP_CONTENT);
 
-            int leftMargin=10;
+            int leftMargin=5;
             int topMargin=3;
             int rightMargin=0;
             int bottomMargin=2;
@@ -64,12 +67,12 @@ public class ProjectScreen extends AppCompatActivity {
 
             tableRow.setGravity(View.TEXT_ALIGNMENT_CENTER);
 
-            RelativeLayout relativeLayout=new RelativeLayout(this);
+            RelativeLayout relativeLayout=new RelativeLayout(getActivity());
             relativeLayout.setPadding(10,10,10,10);
 
             relativeLayout.setLayoutParams(relativeParams);
 
-            TextView textView=new TextView(this);
+            TextView textView=new TextView(getActivity());
             textView.setText("Project Long Name\nProjetcName\n12h7m");
             RelativeLayout.LayoutParams textParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
             textParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
@@ -78,7 +81,7 @@ public class ProjectScreen extends AppCompatActivity {
 
 
 
-            TextView subTextView=new TextView(this);
+            TextView subTextView=new TextView(getActivity());
             subTextView.setText("PLANED:");
             RelativeLayout.LayoutParams subtextParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
             subtextParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
@@ -89,11 +92,11 @@ public class ProjectScreen extends AppCompatActivity {
             tableRow.setBackgroundResource(R.drawable.row_border);
 
 
-           parentLayout.addView(tableRow);
+            parentLayout.addView(tableRow);
 
         }
 
-        LinearLayout createNewProject=(LinearLayout)findViewById(R.id.newproject);
+        LinearLayout createNewProject=(LinearLayout)rootView.findViewById(R.id.newproject);
 
         createNewProject.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,7 +105,9 @@ public class ProjectScreen extends AppCompatActivity {
             }
         });
 
+        return rootView;
     }
+
 
     /**
      * This method is use to create dialog box on click of title of log screen
@@ -110,7 +115,7 @@ public class ProjectScreen extends AppCompatActivity {
      */
     public void openAlert(View view) {
         try {
-            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(ProjectScreen.this);
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
             alertDialogBuilder.setTitle("Create New Project");
 
 // set positive button: Yes message
@@ -130,7 +135,7 @@ startActivity(positveActivity);*/
                 }
             });
 
-            final EditText input = new EditText(ProjectScreen.this);
+            final EditText input = new EditText(getActivity());
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.MATCH_PARENT);
@@ -145,6 +150,20 @@ startActivity(positveActivity);*/
         } catch (Exception e) {
             Log.d("BaseManager", "openAlert(): " + e);
         }
+    }
+
+
+    /**
+     * This method is use to create new instance of this fragment which returns view of Fragment
+     * @param sectionNumber
+     * @return HomeLogScreenFragment
+     */
+    public static ProjectScreen newInstance(int sectionNumber) {
+        ProjectScreen fragment = new ProjectScreen();
+        Bundle args = new Bundle();
+        args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+        fragment.setArguments(args);
+        return fragment;
     }
 
 }

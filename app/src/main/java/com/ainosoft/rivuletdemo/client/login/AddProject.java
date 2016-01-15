@@ -7,8 +7,6 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.ainosoft.rivuletdemo.R;
-import com.ainosoft.rivuletdemo.server.dao.Billable;
-import com.ainosoft.rivuletdemo.server.dao.SetUpDao;
 import com.ainosoft.rivuletdemo.server.helper.DatabaseHelper;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
