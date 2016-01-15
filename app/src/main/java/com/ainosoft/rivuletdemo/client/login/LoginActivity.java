@@ -92,9 +92,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO
-            //Need To Remove just for check
-                projectscreen();
                 attemptLogin();
                 startAppHome(view);
             }
@@ -360,14 +357,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     public void startAppHome(View view){
         Intent intent = new Intent(this, BaseManager.class);
         startActivity(intent);
-    }
-
-
-    public void projectscreen(){
-
-        Intent intent=new Intent(this, ProjectScreen.class);
-        startActivity(intent);
-
     }
 }
 
