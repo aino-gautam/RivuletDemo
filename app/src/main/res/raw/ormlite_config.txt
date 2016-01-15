@@ -1,0 +1,278 @@
+# --table-start--
+dataClass=com.ainosoft.rivuletdemo.shared.slim.Project
+tableName=project
+# --table-fields-start--
+# --field-start--
+fieldName=project_id
+columnName=project_id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=project_name
+columnName=project_name
+# --field-end--
+# --field-start--
+fieldName=short_name
+columnName=short_name
+# --field-end--
+# --field-start--
+fieldName=created_on
+columnName=created_on
+# --field-end--
+# --field-start--
+fieldName=started_on
+columnName=started_on
+# --field-end--
+# --field-start--
+fieldName=completed_on
+columnName=completed_on
+# --field-end--
+# --field-start--
+fieldName=description
+columnName=description
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+
+#################################
+# --table-start--
+dataClass=com.ainosoft.rivuletdemo.shared.slim.Billable
+tableName=billable
+# --table-fields-start--
+# --field-start--
+fieldName=bill_id
+columnName=bill_id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=rate
+columnName=rate
+# --field-end--
+# --field-start--
+fieldName=converted_value
+columnName=converted_value
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+
+#################################
+# --table-start--
+dataClass=com.ainosoft.rivuletdemo.shared.slim.LogEntry
+tableName=logentry
+# --table-fields-start--
+# --field-start--
+fieldName=log_id
+columnName=log_id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=log_title
+columnName=log_title
+# --field-end--
+# --field-start--
+fieldName=type
+columnName=type
+# --field-end--
+# --field-start--
+fieldName=duration
+columnName=duration
+# --field-end--
+# --field-start--
+fieldName=start_time
+columnName=start_time
+# --field-end--
+# --field-start--
+fieldName=end_time
+columnName=end_time
+# --field-end--
+# --field-start--
+fieldName=project
+columnName=project_id
+foreign=true
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+
+#################################
+# --table-start--
+dataClass=com.ainosoft.rivuletdemo.shared.slim.Contacts
+tableName=contacts
+# --table-fields-start--
+# --field-start--
+fieldName=contact_id
+columnName=contact_id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=contact_name
+columnName=contact_name
+# --field-end--
+# --field-start--
+fieldName=number
+columnName=number
+# --field-end--
+# --field-start--
+fieldName=alternate_number
+columnName=alternate_number
+# --field-end--
+# --field-start--
+fieldName=note
+columnName=note
+# --field-end--
+# --field-start--
+fieldName=created_on
+columnName=created_on
+# --field-end--
+# --field-start--
+fieldName=photo
+columnName=photo
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+
+#################################
+# --table-start--
+dataClass=com.ainosoft.rivuletdemo.shared.slim.Setting
+tableName=setting
+# --table-fields-start--
+# --field-start--
+fieldName=setting_id
+columnName=setting_id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=time_interval
+columnName=time_interval
+# --field-end--
+# --field-start--
+fieldName=confirm_time_stop
+columnName=confirm_time_stop
+# --field-end--
+# --field-start--
+fieldName=web_access
+columnName=web_access
+# --field-end--
+# --field-start--
+fieldName=work_group
+columnName=work_group
+# --field-end--
+# --field-start--
+fieldName=start_screen
+columnName=start_screen
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+
+#################################
+# --table-start--
+dataClass=com.ainosoft.rivuletdemo.shared.slim.SetUpDao
+tableName=setup
+# --table-fields-start--
+# --field-start--
+fieldName=setup_id
+columnName=setup_id
+generatedId=true
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+
+#################################
+# --table-start--
+dataClass=com.ainosoft.rivuletdemo.shared.slim.LogMember
+tableName=logmember
+# --table-fields-start--
+# --field-start--
+fieldName=log_mem_id
+columnName=log_mem_id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=log_id
+columnName=log_id
+foreign=true
+# --field-end--
+# --field-start--
+fieldName=contact_id
+columnName=contact_id
+foreign=true
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+
+#################################
+# --table-start--
+dataClass=com.ainosoft.rivuletdemo.shared.slim.ProjectBillable
+tableName=projectbillable
+# --table-fields-start--
+# --field-start--
+fieldName=proj_bill_id
+columnName=proj_bill_id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=project_id
+columnName=project_id
+foreign=true
+# --field-end--
+# --field-start--
+fieldName=billable_id
+columnName=billable_id
+foreign=true
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+
+#################################
+# --table-start--
+dataClass=com.ainosoft.rivuletdemo.shared.slim.WorkGroup
+tableName=workgroup
+# --table-fields-start--
+# --field-start--
+fieldName=work_id
+columnName=work_id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=groupname
+columnName=groupname
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+
+#################################
+# --table-start--
+dataClass=com.ainosoft.rivuletdemo.shared.slim.WorkContactProject
+tableName=workcontactproject
+# --table-fields-start--
+# --field-start--
+fieldName=work_proj_contact_id
+columnName=work_proj_contact_id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=project_id
+columnName=project_id
+foreign=true
+# --field-end--
+# --field-start--
+fieldName=contact_id
+columnName=contact_id
+foreign=true
+# --field-end--
+# --field-start--
+fieldName=work_group_id
+columnName=work_group_id
+foreign=true
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
