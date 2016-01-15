@@ -16,10 +16,10 @@ public class Contacts implements Serializable {
     public String contact_name;
 
     @DatabaseField(columnName = "number")
-    public Integer number;
+    public String number;
 
     @DatabaseField(columnName = "alternate_number")
-    public Integer alternate_number;
+    public String alternate_number;
 
     @DatabaseField(columnName = "note")
     public String note;
@@ -35,7 +35,7 @@ public class Contacts implements Serializable {
     }
 
 
-    public Contacts(String name,Integer number,Integer alternateNumber,String note,String created_On,String photo){
+    public Contacts(String name,String number,String alternateNumber,String note,String created_On,String photo){
         this.contact_name = name;
         this.number=number;
         this.alternate_number=alternateNumber;
