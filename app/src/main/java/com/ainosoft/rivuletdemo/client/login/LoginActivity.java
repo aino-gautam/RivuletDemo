@@ -28,6 +28,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -35,6 +36,8 @@ import java.util.List;
 
 import com.ainosoft.rivuletdemo.R;
 import com.ainosoft.rivuletdemo.client.appbase.BaseManager;
+import com.ainosoft.rivuletdemo.client.projectscreen.ProjectScreen;
+
 import static android.Manifest.permission.READ_CONTACTS;
 
 /**
@@ -89,6 +92,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
+                //TODO
+            //Need To Remove just for check
+                projectscreen();
                 attemptLogin();
                 startAppHome(view);
             }
@@ -354,6 +360,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     public void startAppHome(View view){
         Intent intent = new Intent(this, BaseManager.class);
         startActivity(intent);
+    }
+
+
+    public void projectscreen(){
+
+        Intent intent=new Intent(this, ProjectScreen.class);
+        startActivity(intent);
+
     }
 }
 
