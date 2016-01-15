@@ -29,7 +29,8 @@
         <activity
             android:name=".client.appbase.BaseManager"
             android:label="@string/title_activity_base_manager"
-            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".client.projectscreen.ProjectScreen"></activity>
     </application>
 
 </manifest>
