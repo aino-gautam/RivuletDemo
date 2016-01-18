@@ -188,7 +188,6 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             contact.created_on="14/1/2015";
 
             Project project=new Project();
-            project.project_name="Demo Project";
             project.short_name="Test";
             project.description="created to test saving";
             project.created_on="11/1/16";
@@ -234,6 +233,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
             for(int i=0;i<5;i++){
                 contactDao.create(contact);
+                project.project_name="Demo Project"+i;
                 projectDao.create(project);
                 billableDao.create(billable);
                 call_logDao.create(logEntry);

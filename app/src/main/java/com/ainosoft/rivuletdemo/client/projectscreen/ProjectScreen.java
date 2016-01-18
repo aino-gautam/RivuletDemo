@@ -16,7 +16,14 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import com.ainosoft.rivuletdemo.R;
+import com.ainosoft.rivuletdemo.server.helper.DatabaseHelper;
+import com.ainosoft.rivuletdemo.shared.slim.Project;
+import com.j256.ormlite.dao.Dao;
+
 import android.support.v4.app.Fragment;
+import android.widget.Toast;
+
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,80 +38,58 @@ public class ProjectScreen extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.activity_project_screen, container, false);
+        try {
+            Spinner spinner = (Spinner) rootView.findViewById(R.id.projectscreenspinner);
 
-        Spinner spinner=(Spinner)rootView.findViewById(R.id.projectscreenspinner);
+            List<String> list = new ArrayList<>();
+            list.add("By name");
+            list.add("By size");
+            list.add("By date");
+            list.add("By short name");
 
-        List<String> list=new ArrayList<>();
-        list.add("By name");
-        list.add("By size");
-        list.add("By date");
-        list.add("By short name");
+            ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getActivity(),
+                    android.R.layout.simple_spinner_item, list);
+            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinner.setAdapter(dataAdapter);
 
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_spinner_item, list);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(dataAdapter);
+            TableLayout parentLayout = (TableLayout) rootView.findViewById(R.id.projectnamerelativeLayout);
 
-        TableLayout parentLayout=(TableLayout)rootView.findViewById(R.id.projectnamerelativeLayout);
+            int i;
 
-        int i;
-        for(i=1;i<=10;i++) {
+            DatabaseHelper dbHelper = new DatabaseHelper(getContext());
 
-            TableRow.LayoutParams relativeParams = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT);
+            Dao<Project, Integer> projectDao = dbHelper.getProjectDao();
+            final ArrayList<Project> projectList=(ArrayList)projectDao.queryForAll();
+            for (i = 0; i < projectList.size(); i++) {
+                ProjectScreenRow projectScreen = new ProjectScreenRow();
 
-
-            TableRow tableRow=new TableRow(getActivity());
-            TableLayout.LayoutParams tableRowParams= new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT,TableLayout.LayoutParams.WRAP_CONTENT);
-
-            int leftMargin=5;
-            int topMargin=3;
-            int rightMargin=0;
-            int bottomMargin=2;
-
-            tableRowParams.setMargins(leftMargin, topMargin, rightMargin, bottomMargin);
-
-            tableRow.setLayoutParams(tableRowParams);
-
-            tableRow.setGravity(View.TEXT_ALIGNMENT_CENTER);
-
-            RelativeLayout relativeLayout=new RelativeLayout(getActivity());
-            relativeLayout.setPadding(10,10,10,10);
-
-            relativeLayout.setLayoutParams(relativeParams);
-
-            TextView textView=new TextView(getActivity());
-            textView.setText("Project Long Name\nProjetcName\n12h7m");
-            RelativeLayout.LayoutParams textParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-            textParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
-
-            relativeLayout.addView(textView, textParams);
+                TableRow tableRow = projectScreen.onCreateTableRow(getContext(),projectList.get(i));
 
 
+                tableRow.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
 
-            TextView subTextView=new TextView(getActivity());
-            subTextView.setText("PLANED:");
-            RelativeLayout.LayoutParams subtextParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-            subtextParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-            relativeLayout.addView(subTextView, subtextParams);
+                    }
+                });
 
-
-            tableRow.addView(relativeLayout);
-            tableRow.setBackgroundResource(R.drawable.row_border);
+                parentLayout.addView(tableRow);
 
 
-            parentLayout.addView(tableRow);
-
-        }
-
-        LinearLayout createNewProject=(LinearLayout)rootView.findViewById(R.id.newproject);
-
-        createNewProject.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openAlert(v);
             }
-        });
 
+            LinearLayout createNewProject = (LinearLayout) rootView.findViewById(R.id.newproject);
+
+            createNewProject.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    openAlert(v);
+                }
+            });
+
+        }catch(SQLException e){
+            e.getStackTrace();
+        }
         return rootView;
     }
 
