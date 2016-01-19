@@ -66,6 +66,8 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             TableUtils.createTable(connectionSource,WorkGroup.class);
             TableUtils.createTable(connectionSource,WorkContactProject.class);
 
+            initilizecontaint();
+
 
 
         } catch (SQLException e) {
@@ -162,5 +164,90 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             workContactProjectDao = getDao(WorkContactProject.class);
         }
         return workContactProjectDao;
+    }
+
+    private void initilizecontaint()
+    {
+        try{
+            Dao<Billable, Integer> billableDao=getBillableDao();
+            Dao<LogEntry, Integer> call_logDao=getCallLogDao();
+            Dao<Contacts, Integer> contactDao=getContactsDao();
+            Dao<Project, Integer> projectDao=getProjectDao();
+            Dao<Setting, Integer> settingDao=getSettingDao();
+            Dao<LogMember,Integer>logMemberDao=getLogMemberDao();
+            Dao<ProjectBillable,Integer>projectBillableDao=getProjectBillableDao();
+            Dao<WorkGroup,Integer>workGroupDao=getWorkGroupDao();
+            Dao<WorkContactProject,Integer>workContactProjectDao=getWorkContactProjectDao();
+
+            Contacts contact=new Contacts();
+
+            contact.contact_name="Person";
+            contact.number="9854125674";
+            contact.alternate_number="9850487956";
+            contact.note="Test";
+            contact.created_on="14/1/2015";
+
+            Project project=new Project();
+            project.short_name="Test";
+            project.description="created to test saving";
+            project.created_on="11/1/16";
+            project.started_on="14/1/16";
+            project.completed_on="20/2/16";
+
+            Billable billable=new Billable();
+            billable.rate=60.0;
+            billable.converted_value=120.0;
+
+            LogEntry logEntry=new LogEntry();
+            logEntry.log_title="Aion";
+            logEntry.duration="5.00";
+            logEntry.end_time="13.00";
+            logEntry.start_time="12.55";
+            logEntry.project=project;
+            logEntry.type="Test";
+
+            LogMember logMember=new LogMember();
+            logMember.log_id=logEntry;
+            logMember.contact_id=contact;
+
+            ProjectBillable projectBillable=new ProjectBillable();
+            projectBillable.billable_id=billable;
+            projectBillable.project_id=project;
+
+            Setting setting=new Setting();
+            setting.confirm_time_stop=true;
+            setting.start_screen="Home";
+            setting.time_interval="5";
+            setting.web_access=false;
+            setting.work_group="Employee";
+
+            WorkGroup workGroup=new WorkGroup();
+            workGroup.groupname="Employee";
+
+            WorkContactProject workContactProject=new WorkContactProject();
+
+            workContactProject.contact_id=contact;
+            workContactProject.project_id=project;
+            workContactProject.work_group_id=workGroup;
+
+
+            for(int i=0;i<5;i++){
+                contactDao.create(contact);
+                project.project_name="Demo Project"+i;
+                projectDao.create(project);
+                billableDao.create(billable);
+                call_logDao.create(logEntry);
+                logMemberDao.create(logMember);
+                projectBillableDao.create(projectBillable);
+                settingDao.create(setting);
+                workGroupDao.create(workGroup);
+                workContactProjectDao.create(workContactProject);
+
+            }
+
+        }catch (SQLException e){
+            e.getStackTrace();
+        }
+
     }
 }
