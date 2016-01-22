@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.ainosoft.rivuletdemo.client.home.HomeActivity;
+import com.ainosoft.rivuletdemo.client.home.HomeFragment;
 import com.ainosoft.rivuletdemo.client.logscreen.HomeLogScreenFragment;
 import com.ainosoft.rivuletdemo.client.projectscreen.ProjectScreen;
 
@@ -16,7 +16,7 @@ import com.ainosoft.rivuletdemo.client.projectscreen.ProjectScreen;
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     private HomeLogScreenFragment homeLogScreenFragment;
-    private HomeActivity homeActivity;
+    private HomeFragment homeActivity;
     private ProjectScreen projectScreen;
     public SectionsPagerAdapter(FragmentManager fm) {
         super(fm);
@@ -26,9 +26,9 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         // getItem is called to instantiate the fragment for the given page.
-        // Return a PlaceholderFragment (defined as a static inner class below).
+        // Return a LineChartFragment (defined as a static inner class below).
         homeLogScreenFragment = new HomeLogScreenFragment();
-        homeActivity = new HomeActivity();
+        homeActivity = new HomeFragment();
         projectScreen = new ProjectScreen();
 
         if(position == 0){

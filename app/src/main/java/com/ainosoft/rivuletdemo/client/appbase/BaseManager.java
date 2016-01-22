@@ -2,6 +2,7 @@ package com.ainosoft.rivuletdemo.client.appbase;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -24,6 +25,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.ainosoft.rivuletdemo.R;
+import com.ainosoft.rivuletdemo.client.charts.HistogramActivity;
+import com.ainosoft.rivuletdemo.client.charts.LineChartActivity;
 
 /**
  * author mahesh@ainosoft.com
@@ -201,4 +204,13 @@ public class BaseManager extends AppCompatActivity {
         }
     }
 
+    public void lineChart(View view){
+        Intent intent = new Intent(BaseManager.this, LineChartActivity.class);
+        startActivity(intent);
+    }
+
+    public void histogramView(View view){
+        Intent intent = new Intent(this,HistogramActivity.class);
+        startActivity(intent);
+    }
 }

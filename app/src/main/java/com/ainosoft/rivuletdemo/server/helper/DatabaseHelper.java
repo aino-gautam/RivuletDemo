@@ -1,6 +1,7 @@
 package com.ainosoft.rivuletdemo.server.helper;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -8,6 +9,7 @@ import android.util.Log;
 
 import com.ainosoft.rivuletdemo.R;
 import com.ainosoft.rivuletdemo.shared.slim.Billable;
+import com.ainosoft.rivuletdemo.shared.slim.LineChart;
 import com.ainosoft.rivuletdemo.shared.slim.LogEntry;
 import com.ainosoft.rivuletdemo.shared.slim.Contacts;
 import com.ainosoft.rivuletdemo.shared.slim.LogMember;
@@ -22,7 +24,7 @@ import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 /**
- * Created by comp5 on 8/1/16.
+ * Created by swapnil@ainosoft.com on 8/1/16.
  */
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
@@ -39,6 +41,8 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     private Dao<ProjectBillable,Integer>projectBillableDao;
     private Dao<WorkGroup,Integer>workGroupDao;
     private Dao<WorkContactProject,Integer>workContactProjectDao;
+    private Dao<LineChart,Integer>lineChartDao;
+
 
 
     public DatabaseHelper(Context context) {
@@ -65,6 +69,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             TableUtils.createTable(connectionSource,ProjectBillable.class);
             TableUtils.createTable(connectionSource,WorkGroup.class);
             TableUtils.createTable(connectionSource,WorkContactProject.class);
+            TableUtils.createTable(connectionSource,LineChart.class);
 
             initilizecontaint();
 
@@ -166,6 +171,13 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         return workContactProjectDao;
     }
 
+    public Dao<LineChart, Integer> getLineChartDao() throws SQLException {
+        if (lineChartDao == null) {
+            lineChartDao = getDao(LineChart.class);
+        }
+        return lineChartDao;
+    }
+
     private void initilizecontaint()
     {
         try{
@@ -178,6 +190,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             Dao<ProjectBillable,Integer>projectBillableDao=getProjectBillableDao();
             Dao<WorkGroup,Integer>workGroupDao=getWorkGroupDao();
             Dao<WorkContactProject,Integer>workContactProjectDao=getWorkContactProjectDao();
+            Dao<LineChart,Integer>lineChartDao=getLineChartDao();
 
             Contacts contact=new Contacts();
 
@@ -198,16 +211,72 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             billable.rate=60.0;
             billable.converted_value=120.0;
 
-            LogEntry logEntry=new LogEntry();
-            logEntry.log_title="Aion";
-            logEntry.duration="5.00";
-            logEntry.end_time="13.00";
-            logEntry.start_time="12.55";
-            logEntry.project=project;
-            logEntry.type="Test";
+            LogEntry logEntry1=new LogEntry();
+            logEntry1.log_title="Aion";
+            logEntry1.duration="5.00";
+            logEntry1.end_time="13.00";
+            logEntry1.start_time="12.55";
+            logEntry1.project=project;
+            logEntry1.type="Test";
+            logEntry1.date="19/10/2015";
+
+            LogEntry logEntry2=new LogEntry();
+            logEntry2.log_title="Aion";
+            logEntry2.duration="5.00";
+            logEntry2.end_time="13.00";
+            logEntry2.start_time="12.55";
+            logEntry2.project=project;
+            logEntry2.type="Test";
+            logEntry2.date="20/10/2015";
+
+
+            LogEntry logEntry3=new LogEntry();
+            logEntry3.log_title="Aion";
+            logEntry3.duration="5.00";
+            logEntry3.end_time="13.00";
+            logEntry3.start_time="12.55";
+            logEntry3.project=project;
+            logEntry3.type="Test";
+            logEntry3.date="21/10/2015";
+
+            LogEntry logEntry4=new LogEntry();
+            logEntry4.log_title="Aion";
+            logEntry4.duration="5.00";
+            logEntry4.end_time="13.00";
+            logEntry4.start_time="12.55";
+            logEntry4.project=project;
+            logEntry4.type="Test";
+            logEntry4.date="22/10/2015";
+
+            LogEntry logEntry5=new LogEntry();
+            logEntry5.log_title="Aion";
+            logEntry5.duration="5.00";
+            logEntry5.end_time="13.00";
+            logEntry5.start_time="12.55";
+            logEntry5.project=project;
+            logEntry5.type="Test";
+            logEntry5.date="23/10/2015";
+
+            LogEntry logEntry6=new LogEntry();
+            logEntry6.log_title="Aion";
+            logEntry6.duration="5.00";
+            logEntry6.end_time="13.00";
+            logEntry6.start_time="12.55";
+            logEntry6.project=project;
+            logEntry6.type="Test";
+            logEntry6.date="24/10/2015";
+
+            LogEntry logEntry7=new LogEntry();
+            logEntry7.log_title="Aion";
+            logEntry7.duration="5.00";
+            logEntry7.end_time="13.00";
+            logEntry7.start_time="12.55";
+            logEntry7.project=project;
+            logEntry7.type="Test";
+            logEntry7.date="25/10/2015";
 
             LogMember logMember=new LogMember();
-            logMember.log_id=logEntry;
+            logMember.log_id=logEntry1;
             logMember.contact_id=contact;
 
             ProjectBillable projectBillable=new ProjectBillable();
@@ -231,19 +300,58 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             workContactProject.work_group_id=workGroup;
 
 
+            LineChart lineChart = new LineChart();
+
+
             for(int i=0;i<5;i++){
                 contactDao.create(contact);
                 project.project_name="Demo Project"+i;
                 projectDao.create(project);
                 billableDao.create(billable);
-                call_logDao.create(logEntry);
                 logMemberDao.create(logMember);
                 projectBillableDao.create(projectBillable);
                 settingDao.create(setting);
                 workGroupDao.create(workGroup);
                 workContactProjectDao.create(workContactProject);
 
+                lineChart.xAxis = i+0.1;
+                lineChart.yAxis = i+0.2;
+
+                lineChartDao.create(lineChart);
             }
+
+            List<Project> list=projectDao.queryForAll();
+
+            logEntry1.project=list.get(0);
+            call_logDao.create(logEntry1);
+            logEntry2.project=list.get(1);
+            call_logDao.create(logEntry2);
+            logEntry3.project=list.get(2);
+            call_logDao.create(logEntry3);
+            logEntry4.project=list.get(3);
+            call_logDao.create(logEntry4);
+            logEntry5.project=list.get(4);
+            call_logDao.create(logEntry5);
+            logEntry6.project=list.get(0);
+            call_logDao.create(logEntry6);
+            logEntry7.project=list.get(1);
+            call_logDao.create(logEntry7);
+
+
+            logEntry1.project=list.get(0);
+            call_logDao.create(logEntry1);
+            logEntry2.project=list.get(1);
+            call_logDao.create(logEntry2);
+            logEntry3.project=list.get(2);
+            call_logDao.create(logEntry3);
+            logEntry4.project=list.get(3);
+            call_logDao.create(logEntry4);
+            logEntry5.project=list.get(4);
+            call_logDao.create(logEntry5);
+            logEntry6.project=list.get(0);
+            call_logDao.create(logEntry6);
+            logEntry7.project=list.get(1);
+            call_logDao.create(logEntry7);
 
         }catch (SQLException e){
             e.getStackTrace();
