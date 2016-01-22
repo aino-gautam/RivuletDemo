@@ -88,6 +88,10 @@ fieldName=end_time
 columnName=end_time
 # --field-end--
 # --field-start--
+fieldName=date
+columnName=date
+# --field-end--
+# --field-start--
 fieldName=project
 columnName=project_id
 foreign=true
@@ -272,6 +276,28 @@ foreign=true
 fieldName=work_group_id
 columnName=work_group_id
 foreign=true
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+
+#################################
+# --table-start--
+dataClass=com.ainosoft.rivuletdemo.shared.slim.LineChart
+tableName=linechart
+# --table-fields-start--
+# --field-start--
+fieldName=line_id
+columnName=line_id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=xAxis
+columnName=xAxis
+# --field-end--
+# --field-start--
+fieldName=yAxis
+columnName=yAxis
 # --field-end--
 # --table-fields-end--
 # --table-end--

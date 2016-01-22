@@ -28,6 +28,9 @@ public class LogEntry implements Serializable {
     @DatabaseField(columnName = "end_time")
     public String end_time;
 
+    @DatabaseField(columnName = "date")
+    public String date;
+
     @DatabaseField(canBeNull = false, foreign = true, foreignAutoRefresh = true)
     public Project project;
 
