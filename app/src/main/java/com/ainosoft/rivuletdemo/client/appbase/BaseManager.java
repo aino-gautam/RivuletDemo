@@ -27,6 +27,7 @@ import android.widget.LinearLayout;
 import com.ainosoft.rivuletdemo.R;
 import com.ainosoft.rivuletdemo.client.charts.HistogramActivity;
 import com.ainosoft.rivuletdemo.client.charts.LineChartActivity;
+import com.ainosoft.rivuletdemo.client.piechart.PieChartClass;
 
 /**
  * author mahesh@ainosoft.com
@@ -211,6 +212,11 @@ public class BaseManager extends AppCompatActivity {
 
     public void histogramView(View view){
         Intent intent = new Intent(this,HistogramActivity.class);
+        startActivity(intent);
+    }
+
+    public void pieChartView(View view){
+        Intent intent = new Intent(this,PieChartClass.class);
         startActivity(intent);
     }
 }

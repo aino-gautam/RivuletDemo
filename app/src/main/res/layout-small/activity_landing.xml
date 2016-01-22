@@ -29,7 +29,6 @@
         android:id="@+id/landingpagetext"
         android:textColor="#44cceb"
         android:textSize="45sp"
-        android:onClick="openHomeLogScreen"
         android:layout_below="@+id/landingicon"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>

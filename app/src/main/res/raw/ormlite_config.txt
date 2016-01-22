@@ -1,4 +1,40 @@
 # --table-start--
+dataClass=com.ainosoft.rivuletdemo.shared.slim.ProjectStatus
+tableName=projectstatus
+# --table-fields-start--
+# --field-start--
+fieldName=status_id
+columnName=status_id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=status_name
+columnName=status_name
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+
+#################################
+# --table-start--
+dataClass=com.ainosoft.rivuletdemo.shared.slim.CallLogType
+tableName=calllogtype
+# --table-fields-start--
+# --field-start--
+fieldName=log_id
+columnName=log_id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=log_type
+columnName=log_type
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+
+#################################
+# --table-start--
 dataClass=com.ainosoft.rivuletdemo.shared.slim.Project
 tableName=project
 # --table-fields-start--
@@ -30,6 +66,11 @@ columnName=completed_on
 # --field-start--
 fieldName=description
 columnName=description
+# --field-end--
+# --field-start--
+fieldName=project_status
+columnName=project_status
+foreign=true
 # --field-end--
 # --table-fields-end--
 # --table-end--

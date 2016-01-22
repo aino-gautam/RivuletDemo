@@ -29,16 +29,15 @@
         android:id="@+id/landingpagetext"
         android:textColor="#44cceb"
         android:textSize="55sp"
-        android:onClick="openHomeLogScreen"
         android:layout_marginBottom="368dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
-    <ImageView
+    <!--<ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageView3"
         android:layout_above="@+id/landingicon"
         android:layout_alignLeft="@+id/landingpagetext"
-        android:layout_alignStart="@+id/landingpagetext" />
+        android:layout_alignStart="@+id/landingpagetext" />-->
 </RelativeLayout>

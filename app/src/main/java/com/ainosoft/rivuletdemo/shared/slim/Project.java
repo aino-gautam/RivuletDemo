@@ -7,7 +7,11 @@ import java.io.Serializable;
 /**
  * Created by comp5 on 8/1/16.
  */
-public class Project implements Serializable {
+public class Project implements  Serializable{
+
+    public static final String PASSWORD_FIELD_NAME = "project_name";
+    public static final String PASSWORD_STATUS = "project_status";
+
 
     @DatabaseField(generatedId = true, columnName = "project_id")
     public int project_id;
@@ -31,16 +35,24 @@ public class Project implements Serializable {
     @DatabaseField(columnName = "description")
     public String description;
 
+
+
+    @DatabaseField(canBeNull = false, foreign = true, foreignAutoRefresh = true)
+    public ProjectStatus project_status;
+
     public Project(){
 
     }
 
-    public Project(String name,String shortName,String createdOn,String completedOn,String description){
+    public Project(String name,String shortName,String createdOn,String completedOn,String description,ProjectStatus projectStatus){
         this.project_name = name;
         this.short_name=shortName;
         this.created_on=createdOn;
         this.completed_on=completedOn;
         this.description=description;
-
+        this.project_status=projectStatus;
     }
+
+
+
 }
