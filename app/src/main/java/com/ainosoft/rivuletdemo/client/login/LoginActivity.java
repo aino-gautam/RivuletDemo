@@ -28,7 +28,6 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -36,8 +35,6 @@ import java.util.List;
 
 import com.ainosoft.rivuletdemo.R;
 import com.ainosoft.rivuletdemo.client.appbase.BaseManager;
-import com.ainosoft.rivuletdemo.client.piechart.PieChartClass;
-import com.ainosoft.rivuletdemo.client.projectscreen.ProjectScreen;
 
 import static android.Manifest.permission.READ_CONTACTS;
 

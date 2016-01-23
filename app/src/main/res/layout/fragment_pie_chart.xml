@@ -1,8 +1,9 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_below="@+id/relout"
+    android:orientation="vertical"
     tools:context="lecho.lib.hellocharts.samples.PieChartActivity$PlaceholderFragment"
     >
 
@@ -36,4 +37,4 @@
     </LinearLayout>
     </ScrollView>
 
-</RelativeLayout>
+</LinearLayout>

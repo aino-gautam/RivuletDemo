@@ -1,4 +1,4 @@
-package com.ainosoft.rivuletdemo.client.charts;
+package com.ainosoft.rivuletdemo.client.charts.linechart;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

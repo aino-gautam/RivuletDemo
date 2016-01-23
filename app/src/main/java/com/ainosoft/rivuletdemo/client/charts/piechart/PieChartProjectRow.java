@@ -1,4 +1,4 @@
-package com.ainosoft.rivuletdemo.client.piechart;
+package com.ainosoft.rivuletdemo.client.charts.piechart;
 
 import android.content.Context;
 import android.view.View;
@@ -6,7 +6,6 @@ import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.ainosoft.rivuletdemo.R;
 import com.ainosoft.rivuletdemo.shared.slim.Project;
