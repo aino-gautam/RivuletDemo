@@ -1,5 +1,6 @@
 package com.ainosoft.rivuletdemo.client.popuponcall;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
@@ -11,7 +12,7 @@ import com.ainosoft.rivuletdemo.R;
 /**
  * author tushar@ainosoft.com
  */
-public class PopupCallActivity extends AppCompatActivity {
+public class PopupCallActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

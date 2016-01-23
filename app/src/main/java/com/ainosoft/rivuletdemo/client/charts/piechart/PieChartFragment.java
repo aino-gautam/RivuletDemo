@@ -1,4 +1,4 @@
-package com.ainosoft.rivuletdemo.client.piechart;
+package com.ainosoft.rivuletdemo.client.charts.piechart;
 
 
 import android.graphics.Typeface;

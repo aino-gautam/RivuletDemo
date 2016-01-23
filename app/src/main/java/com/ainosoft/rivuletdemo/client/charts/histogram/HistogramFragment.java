@@ -1,4 +1,4 @@
-package com.ainosoft.rivuletdemo.client.charts;
+package com.ainosoft.rivuletdemo.client.charts.histogram;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
