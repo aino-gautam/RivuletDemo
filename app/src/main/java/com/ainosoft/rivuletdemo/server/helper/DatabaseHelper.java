@@ -2,19 +2,23 @@ package com.ainosoft.rivuletdemo.server.helper;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.ArrayList;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.telecom.Call;
 import android.util.Log;
 
 import com.ainosoft.rivuletdemo.R;
 import com.ainosoft.rivuletdemo.shared.slim.Billable;
 import com.ainosoft.rivuletdemo.shared.slim.LineChart;
+import com.ainosoft.rivuletdemo.shared.slim.CallLogType;
 import com.ainosoft.rivuletdemo.shared.slim.LogEntry;
 import com.ainosoft.rivuletdemo.shared.slim.Contacts;
 import com.ainosoft.rivuletdemo.shared.slim.LogMember;
 import com.ainosoft.rivuletdemo.shared.slim.Project;
 import com.ainosoft.rivuletdemo.shared.slim.ProjectBillable;
+import com.ainosoft.rivuletdemo.shared.slim.ProjectStatus;
 import com.ainosoft.rivuletdemo.shared.slim.Setting;
 import com.ainosoft.rivuletdemo.shared.slim.SetUpDao;
 import com.ainosoft.rivuletdemo.shared.slim.WorkContactProject;
@@ -31,6 +35,8 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     private static final String DATABASE_NAME = "rivuletdemo.db";
     private static final int DATABASE_VERSION = 1;
 
+    private Dao<CallLogType,Integer> callLogTypeDao;
+    private Dao<ProjectStatus,Integer> projectStatusesDao;
     private Dao<Billable, Integer> billableDao;
     private Dao<LogEntry, Integer> call_logDao;
     private Dao<Contacts, Integer> contactDao;
@@ -59,11 +65,13 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
 
             // Create tables. This onCreate() method will be invoked only once of the application life time i.e. the first time when the application starts.
+            TableUtils.createTable(connectionSource,ProjectStatus.class);
+            TableUtils.createTable(connectionSource,CallLogType.class);
             TableUtils.createTable(connectionSource,Billable.class);
             TableUtils.createTable(connectionSource,LogEntry.class);
             TableUtils.createTable(connectionSource,Contacts.class);
-            TableUtils.createTable(connectionSource,Project.class);
-            TableUtils.createTable(connectionSource,Setting.class);
+            TableUtils.createTable(connectionSource, Project.class);
+            TableUtils.createTable(connectionSource, Setting.class);
             TableUtils.createTable(connectionSource, SetUpDao.class);
             TableUtils.createTable(connectionSource,LogMember.class);
             TableUtils.createTable(connectionSource,ProjectBillable.class);
@@ -178,6 +186,21 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         return lineChartDao;
     }
 
+    public Dao<ProjectStatus, Integer> getProjectStatusesDao() throws SQLException {
+        if (projectStatusesDao == null) {
+            projectStatusesDao = getDao(ProjectStatus.class);
+        }
+        return projectStatusesDao;
+    }
+
+
+    public Dao<CallLogType, Integer> getCallLogTypeDao() throws SQLException {
+        if (callLogTypeDao == null) {
+            callLogTypeDao = getDao(CallLogType.class);
+        }
+        return callLogTypeDao;
+    }
+
     private void initilizecontaint()
     {
         try{
@@ -191,6 +214,29 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             Dao<WorkGroup,Integer>workGroupDao=getWorkGroupDao();
             Dao<WorkContactProject,Integer>workContactProjectDao=getWorkContactProjectDao();
             Dao<LineChart,Integer>lineChartDao=getLineChartDao();
+            Dao<CallLogType,Integer> callLogTypeDao=getCallLogTypeDao();
+            Dao<ProjectStatus,Integer> projectStatusesDao=getProjectStatusesDao();
+
+            CallLogType callLog=new CallLogType();
+            callLog.log_type="Meeting";
+            callLogTypeDao.create(callLog);
+
+            callLog.log_type="Call";
+            callLogTypeDao.create(callLog);
+
+            callLog.log_type="Stoper";
+            callLogTypeDao.create(callLog);
+
+            ProjectStatus projectStatus=new ProjectStatus();
+
+            projectStatus.status_name="Started";
+            projectStatusesDao.create(projectStatus);
+
+            projectStatus.status_name="Completed";
+            projectStatusesDao.create(projectStatus);
+
+            projectStatus.status_name="Finished";
+            projectStatusesDao.create(projectStatus);
 
             Contacts contact=new Contacts();
 
@@ -303,9 +349,14 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             LineChart lineChart = new LineChart();
 
 
+            ArrayList<ProjectStatus> projList=(ArrayList)projectStatusesDao.queryForAll();
             for(int i=0;i<5;i++){
                 contactDao.create(contact);
                 project.project_name="Demo Project"+i;
+                if(i%2==0)
+                project.project_status=projList.get(0);
+                else
+                project.project_status=projList.get(2);
                 projectDao.create(project);
                 billableDao.create(billable);
                 logMemberDao.create(logMember);

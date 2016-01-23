@@ -1,0 +1,39 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/relout"
+    tools:context="lecho.lib.hellocharts.samples.PieChartActivity$PlaceholderFragment"
+    >
+
+   <lecho.lib.hellocharts.view.PieChartView
+        android:id="@+id/chart"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+       android:layout_alignParentRight="true"
+       android:layout_alignParentEnd="true">
+    </lecho.lib.hellocharts.view.PieChartView>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@+id/chart"
+        android:layout_alignLeft="@+id/newproject"
+        android:layout_alignStart="@+id/newproject"
+        android:id="@+id/scrollView">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="250dp"
+        android:id="@+id/piechartscrollid">
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/chart"
+        android:id="@+id/piecharttable">
+    </TableLayout>
+
+    </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>
