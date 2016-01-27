@@ -6,8 +6,11 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.media.Image;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
@@ -22,7 +25,9 @@ import android.view.MenuItem;
 import android.view.View;
 
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.ainosoft.rivuletdemo.R;
 import com.ainosoft.rivuletdemo.client.charts.histogram.HistogramActivity;
@@ -44,7 +49,7 @@ public class BaseManager extends AppCompatActivity {
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private CollapsingToolbarLayout collapsingToolbarLayout = null;
-
+    private ImageView humberger_Image=null;
     /**
      * The {@link ViewPager} that will host the section contents.
      */
@@ -64,7 +69,16 @@ public class BaseManager extends AppCompatActivity {
            mViewPager = (ViewPager) findViewById(R.id.container);
            mViewPager.setAdapter(mSectionsPagerAdapter);
 
+           humberger_Image=(ImageView)findViewById(R.id.drawer_humburger);
 
+           humberger_Image.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View v) {
+                   DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                   drawer.openDrawer(GravityCompat.START);
+                   Toast.makeText(getApplicationContext(),"You Click Drawer:",Toast.LENGTH_LONG).show();
+               }
+           });
            final TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
            tabLayout.setupWithViewPager(mViewPager);
            tabLayout.setSelectedTabIndicatorColor(Color.parseColor("#44cceb"));
@@ -219,4 +233,5 @@ public class BaseManager extends AppCompatActivity {
         Intent intent = new Intent(this,PieChartActivity.class);
         startActivity(intent);
     }
+
 }

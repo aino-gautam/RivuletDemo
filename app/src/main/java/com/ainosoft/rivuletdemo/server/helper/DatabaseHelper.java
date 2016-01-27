@@ -264,7 +264,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             logEntry1.start_time="12.55";
             logEntry1.project=project;
             logEntry1.type="Test";
-            logEntry1.date="19/10/2015";
+            logEntry1.date="17/01/2016";
 
             LogEntry logEntry2=new LogEntry();
             logEntry2.log_title="Aion";
@@ -273,7 +273,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             logEntry2.start_time="12.55";
             logEntry2.project=project;
             logEntry2.type="Test";
-            logEntry2.date="20/10/2015";
+            logEntry2.date="18/01/2016";
 
 
             LogEntry logEntry3=new LogEntry();
@@ -283,7 +283,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             logEntry3.start_time="12.55";
             logEntry3.project=project;
             logEntry3.type="Test";
-            logEntry3.date="21/10/2015";
+            logEntry3.date="19/01/2016";
 
             LogEntry logEntry4=new LogEntry();
             logEntry4.log_title="Aion";
@@ -292,7 +292,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             logEntry4.start_time="12.55";
             logEntry4.project=project;
             logEntry4.type="Test";
-            logEntry4.date="22/10/2015";
+            logEntry4.date="20/01/2016";
 
             LogEntry logEntry5=new LogEntry();
             logEntry5.log_title="Aion";
@@ -301,7 +301,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             logEntry5.start_time="12.55";
             logEntry5.project=project;
             logEntry5.type="Test";
-            logEntry5.date="23/10/2015";
+            logEntry5.date="21/01/2016";
 
             LogEntry logEntry6=new LogEntry();
             logEntry6.log_title="Aion";
@@ -310,7 +310,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             logEntry6.start_time="12.55";
             logEntry6.project=project;
             logEntry6.type="Test";
-            logEntry6.date="24/10/2015";
+            logEntry6.date="22/01/2016";
 
             LogEntry logEntry7=new LogEntry();
             logEntry7.log_title="Aion";
@@ -319,7 +319,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             logEntry7.start_time="12.55";
             logEntry7.project=project;
             logEntry7.type="Test";
-            logEntry7.date="25/10/2015";
+            logEntry7.date="23/01/2016";
 
             LogMember logMember=new LogMember();
             logMember.log_id=logEntry1;
@@ -401,8 +401,30 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             call_logDao.create(logEntry5);
             logEntry6.project=list.get(0);
             call_logDao.create(logEntry6);
-            logEntry7.project=list.get(1);
+
+            logEntry7.project=list.get(0);
             call_logDao.create(logEntry7);
+
+            logEntry6.project=list.get(0);
+            call_logDao.create(logEntry6);
+
+
+            logEntry5.project=list.get(0);
+            call_logDao.create(logEntry5);
+
+            logEntry4.project=list.get(0);
+            call_logDao.create(logEntry4);
+
+            logEntry3.project=list.get(0);
+            call_logDao.create(logEntry3);
+
+            logEntry2.project=list.get(0);
+            call_logDao.create(logEntry2);
+
+            logEntry1.project=list.get(0);
+            call_logDao.create(logEntry1);
+
+
 
         }catch (SQLException e){
             e.getStackTrace();

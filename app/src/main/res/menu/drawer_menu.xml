@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_first_fragment"
+            android:icon="@drawable/one"
+            android:title="Home"
+            />
+        <item
+            android:id="@+id/nav_second_fragment"
+            android:icon="@drawable/two"
+            android:title="Insights" />
+        <item
+            android:id="@+id/nav_third_fragment"
+            android:icon="@drawable/three"
+            android:title="Projects" />
+        <item
+            android:id="@+id/nav_four_fragment"
+            android:icon="@drawable/three"
+            android:title="Logs" />
+    </group>
+    <item android:title="">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@android:drawable/ic_menu_share"
+                android:title="Contact"/>
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@android:drawable/ic_menu_send"
+                android:title="Setting"/>
+            <item
+                android:id="@+id/nav_help"
+                android:icon="@android:drawable/ic_menu_send"
+                android:title="Help and Feedback"/>
+        </menu>
+    </item>
+</menu>
