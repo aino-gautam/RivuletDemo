@@ -76,7 +76,6 @@ public class BaseManager extends AppCompatActivity {
                public void onClick(View v) {
                    DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                    drawer.openDrawer(GravityCompat.START);
-                   Toast.makeText(getApplicationContext(),"You Click Drawer:",Toast.LENGTH_LONG).show();
                }
            });
            final TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
@@ -219,16 +218,28 @@ public class BaseManager extends AppCompatActivity {
         }
     }
 
+    /**
+     * This method is use to create view of linechart
+     * @param view
+     */
     public void lineChart(View view){
         Intent intent = new Intent(BaseManager.this, LineChartActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * This method is use to create view of histogram
+     * @param view
+     */
     public void histogramView(View view){
         Intent intent = new Intent(this,HistogramActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * This method is use to create view of piechart
+     * @param view
+     */
     public void pieChartView(View view){
         Intent intent = new Intent(this,PieChartActivity.class);
         startActivity(intent);
