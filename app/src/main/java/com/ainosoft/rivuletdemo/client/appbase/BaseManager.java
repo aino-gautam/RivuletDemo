@@ -1,6 +1,7 @@
 package com.ainosoft.rivuletdemo.client.appbase;
 
 import android.app.AlertDialog;
+import android.content.ClipData;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -50,6 +51,7 @@ public class BaseManager extends AppCompatActivity {
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private CollapsingToolbarLayout collapsingToolbarLayout = null;
     private ImageView humberger_Image=null;
+    private ClipData.Item home;
     /**
      * The {@link ViewPager} that will host the section contents.
      */
@@ -244,5 +246,7 @@ public class BaseManager extends AppCompatActivity {
         Intent intent = new Intent(this,PieChartActivity.class);
         startActivity(intent);
     }
+
+
 
 }

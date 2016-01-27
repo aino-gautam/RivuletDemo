@@ -1,18 +1,17 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_below="@+id/relout"
-    android:orientation="vertical"
     tools:context="lecho.lib.hellocharts.samples.PieChartActivity$PlaceholderFragment"
     >
 
-   <lecho.lib.hellocharts.view.PieChartView
+    <lecho.lib.hellocharts.view.PieChartView
         android:id="@+id/chart"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-       android:layout_alignParentRight="true"
-       android:layout_alignParentEnd="true">
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
     </lecho.lib.hellocharts.view.PieChartView>
 
     <ScrollView
@@ -23,18 +22,32 @@
         android:layout_alignStart="@+id/newproject"
         android:id="@+id/scrollView">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="250dp"
-        android:id="@+id/piechartscrollid">
-    <TableLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/chart"
-        android:id="@+id/piecharttable">
-    </TableLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="250dp"
+            android:id="@+id/piechartscrollid">
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/chart"
+                android:id="@+id/piecharttable">
+            </TableLayout>
 
-    </LinearLayout>
+        </LinearLayout>
     </ScrollView>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/scrollView">
 
-</LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="LOGGED TIME BY DAY"/>
+    </LinearLayout>
+
+</RelativeLayout>
